@@ -1,0 +1,523 @@
+MSSubClass: Identifies the type of dwelling involved in the sale.
+
+        201-STORY 1946 & NEWER ALL STYLES
+        301-STORY 1945 & OLDER
+        401-STORY W/FINISHED ATTIC ALL AGES
+        451-1/2 STORY - UNFINISHED ALL AGES
+        501-1/2 STORY FINISHED ALL AGES
+        602-STORY 1946 & NEWER
+        702-STORY 1945 & OLDER
+        752-1/2 STORY ALL AGES
+        80SPLIT OR MULTI-LEVEL
+        85SPLIT FOYER
+        90DUPLEX - ALL STYLES AND AGES
+       1201-STORY PUD (Planned Unit Development) - 1946 & NEWER
+       1501-1/2 STORY PUD - ALL AGES
+       1602-STORY PUD - 1946 & NEWER
+       180PUD - MULTILEVEL - INCL SPLIT LEV/FOYER
+       1902 FAMILY CONVERSION - ALL STYLES AND AGES
+
+MSZoning: Identifies the general zoning classification of the sale.
+
+       AAgriculture
+       CCommercial
+       FVFloating Village Residential
+       IIndustrial
+       RHResidential High Density
+       RLResidential Low Density
+       RPResidential Low Density Park 
+       RMResidential Medium Density
+
+LotFrontage: Linear feet of street connected to property
+
+LotArea: Lot size in square feet
+
+Street: Type of road access to property
+
+       GrvlGravel
+       PavePaved
+       
+Alley: Type of alley access to property
+
+       GrvlGravel
+       PavePaved
+       NA No alley access
+
+LotShape: General shape of property
+
+       RegRegular
+       IR1Slightly irregular
+       IR2Moderately Irregular
+       IR3Irregular
+       
+LandContour: Flatness of the property
+
+       LvlNear Flat/Level
+       BnkBanked - Quick and significant rise from street grade to building
+       HLSHillside - Significant slope from side to side
+       LowDepression
+
+Utilities: Type of utilities available
+
+       AllPubAll public Utilities (E,G,W,& S)
+       NoSewrElectricity, Gas, and Water (Septic Tank)
+       NoSeWaElectricity and Gas Only
+       ELOElectricity only
+
+LotConfig: Lot configuration
+
+       InsideInside lot
+       CornerCorner lot
+       CulDSacCul-de-sac
+       FR2Frontage on 2 sides of property
+       FR3Frontage on 3 sides of property
+
+LandSlope: Slope of property
+
+       GtlGentle slope
+       ModModerate Slope
+       SevSevere Slope
+
+Neighborhood: Physical locations within Ames city limits
+
+       BlmngtnBloomington Heights
+       BluesteBluestem
+       BrDaleBriardale
+       BrkSideBrookside
+       ClearCrClear Creek
+       CollgCrCollege Creek
+       CrawforCrawford
+       EdwardsEdwards
+       GilbertGilbert
+       IDOTRRIowa DOT and Rail Road
+       MeadowVMeadow Village
+       MitchelMitchell
+       NamesNorth Ames
+       NoRidgeNorthridge
+       NPkVillNorthpark Villa
+       NridgHtNorthridge Heights
+       NWAmesNorthwest Ames
+       OldTownOld Town
+       SWISUSouth & West of Iowa State University
+       SawyerSawyer
+       SawyerWSawyer West
+       SomerstSomerset
+       StoneBrStone Brook
+       TimberTimberland
+       VeenkerVeenker
+
+Condition1: Proximity to various conditions
+
+       ArteryAdjacent to arterial street
+       FeedrAdjacent to feeder street
+       NormNormal
+       RRNnWithin 200' of North-South Railroad
+       RRAnAdjacent to North-South Railroad
+       PosNNear positive off-site feature--park, greenbelt, etc.
+       PosAAdjacent to postive off-site feature
+       RRNeWithin 200' of East-West Railroad
+       RRAeAdjacent to East-West Railroad
+
+Condition2: Proximity to various conditions (if more than one is present)
+
+       ArteryAdjacent to arterial street
+       FeedrAdjacent to feeder street
+       NormNormal
+       RRNnWithin 200' of North-South Railroad
+       RRAnAdjacent to North-South Railroad
+       PosNNear positive off-site feature--park, greenbelt, etc.
+       PosAAdjacent to postive off-site feature
+       RRNeWithin 200' of East-West Railroad
+       RRAeAdjacent to East-West Railroad
+
+BldgType: Type of dwelling
+
+       1FamSingle-family Detached
+       2FmConTwo-family Conversion; originally built as one-family dwelling
+       DuplxDuplex
+       TwnhsETownhouse End Unit
+       TwnhsITownhouse Inside Unit
+
+HouseStyle: Style of dwelling
+
+       1StoryOne story
+       1.5FinOne and one-half story: 2nd level finished
+       1.5UnfOne and one-half story: 2nd level unfinished
+       2StoryTwo story
+       2.5FinTwo and one-half story: 2nd level finished
+       2.5UnfTwo and one-half story: 2nd level unfinished
+       SFoyerSplit Foyer
+       SLvlSplit Level
+
+OverallQual: Rates the overall material and finish of the house
+
+       10Very Excellent
+       9Excellent
+       8Very Good
+       7Good
+       6Above Average
+       5Average
+       4Below Average
+       3Fair
+       2Poor
+       1Very Poor
+
+OverallCond: Rates the overall condition of the house
+
+       10Very Excellent
+       9Excellent
+       8Very Good
+       7Good
+       6Above Average
+       5Average
+       4Below Average
+       3Fair
+       2Poor
+       1Very Poor
+
+YearBuilt: Original construction date
+
+YearRemodAdd: Remodel date (same as construction date if no remodeling or additions)
+
+RoofStyle: Type of roof
+
+       FlatFlat
+       GableGable
+       GambrelGabrel (Barn)
+       HipHip
+       MansardMansard
+       ShedShed
+
+RoofMatl: Roof material
+
+       ClyTileClay or Tile
+       CompShgStandard (Composite) Shingle
+       MembranMembrane
+       MetalMetal
+       RollRoll
+       Tar&GrvGravel & Tar
+       WdShakeWood Shakes
+       WdShnglWood Shingles
+
+Exterior1st: Exterior covering on house
+
+       AsbShngAsbestos Shingles
+       AsphShnAsphalt Shingles
+       BrkCommBrick Common
+       BrkFaceBrick Face
+       CBlockCinder Block
+       CemntBdCement Board
+       HdBoardHard Board
+       ImStuccImitation Stucco
+       MetalSdMetal Siding
+       OtherOther
+       PlywoodPlywood
+       PreCastPreCast
+       StoneStone
+       StuccoStucco
+       VinylSdVinyl Siding
+       Wd SdngWood Siding
+       WdShingWood Shingles
+
+Exterior2nd: Exterior covering on house (if more than one material)
+
+       AsbShngAsbestos Shingles
+       AsphShnAsphalt Shingles
+       BrkCommBrick Common
+       BrkFaceBrick Face
+       CBlockCinder Block
+       CemntBdCement Board
+       HdBoardHard Board
+       ImStuccImitation Stucco
+       MetalSdMetal Siding
+       OtherOther
+       PlywoodPlywood
+       PreCastPreCast
+       StoneStone
+       StuccoStucco
+       VinylSdVinyl Siding
+       Wd SdngWood Siding
+       WdShingWood Shingles
+
+MasVnrType: Masonry veneer type
+
+       BrkCmnBrick Common
+       BrkFaceBrick Face
+       CBlockCinder Block
+       NoneNone
+       StoneStone
+
+MasVnrArea: Masonry veneer area in square feet
+
+ExterQual: Evaluates the quality of the material on the exterior 
+
+       ExExcellent
+       GdGood
+       TAAverage/Typical
+       FaFair
+       PoPoor
+
+ExterCond: Evaluates the present condition of the material on the exterior
+
+       ExExcellent
+       GdGood
+       TAAverage/Typical
+       FaFair
+       PoPoor
+
+Foundation: Type of foundation
+
+       BrkTilBrick & Tile
+       CBlockCinder Block
+       PConcPoured Contrete
+       SlabSlab
+       StoneStone
+       WoodWood
+
+BsmtQual: Evaluates the height of the basement
+
+       ExExcellent (100+ inches)
+       GdGood (90-99 inches)
+       TATypical (80-89 inches)
+       FaFair (70-79 inches)
+       PoPoor (<70 inches
+       NANo Basement
+
+BsmtCond: Evaluates the general condition of the basement
+
+       ExExcellent
+       GdGood
+       TATypical - slight dampness allowed
+       FaFair - dampness or some cracking or settling
+       PoPoor - Severe cracking, settling, or wetness
+       NANo Basement
+
+BsmtExposure: Refers to walkout or garden level walls
+
+       GdGood Exposure
+       AvAverage Exposure (split levels or foyers typically score average or above)
+       MnMimimum Exposure
+       NoNo Exposure
+       NANo Basement
+
+BsmtFinType1: Rating of basement finished area
+
+       GLQGood Living Quarters
+       ALQAverage Living Quarters
+       BLQBelow Average Living Quarters
+       RecAverage Rec Room
+       LwQLow Quality
+       UnfUnfinshed
+       NANo Basement
+
+BsmtFinSF1: Type 1 finished square feet
+
+BsmtFinType2: Rating of basement finished area (if multiple types)
+
+       GLQGood Living Quarters
+       ALQAverage Living Quarters
+       BLQBelow Average Living Quarters
+       RecAverage Rec Room
+       LwQLow Quality
+       UnfUnfinshed
+       NANo Basement
+
+BsmtFinSF2: Type 2 finished square feet
+
+BsmtUnfSF: Unfinished square feet of basement area
+
+TotalBsmtSF: Total square feet of basement area
+
+Heating: Type of heating
+
+       FloorFloor Furnace
+       GasAGas forced warm air furnace
+       GasWGas hot water or steam heat
+       GravGravity furnace
+       OthWHot water or steam heat other than gas
+       WallWall furnace
+
+HeatingQC: Heating quality and condition
+
+       ExExcellent
+       GdGood
+       TAAverage/Typical
+       FaFair
+       PoPoor
+
+CentralAir: Central air conditioning
+
+       NNo
+       YYes
+
+Electrical: Electrical system
+
+       SBrkrStandard Circuit Breakers & Romex
+       FuseAFuse Box over 60 AMP and all Romex wiring (Average)
+       FuseF60 AMP Fuse Box and mostly Romex wiring (Fair)
+       FuseP60 AMP Fuse Box and mostly knob & tube wiring (poor)
+       MixMixed
+
+1stFlrSF: First Floor square feet
+ 
+2ndFlrSF: Second floor square feet
+
+LowQualFinSF: Low quality finished square feet (all floors)
+
+GrLivArea: Above grade (ground) living area square feet
+
+BsmtFullBath: Basement full bathrooms
+
+BsmtHalfBath: Basement half bathrooms
+
+FullBath: Full bathrooms above grade
+
+HalfBath: Half baths above grade
+
+Bedroom: Bedrooms above grade (does NOT include basement bedrooms)
+
+Kitchen: Kitchens above grade
+
+KitchenQual: Kitchen quality
+
+       ExExcellent
+       GdGood
+       TATypical/Average
+       FaFair
+       PoPoor
+       
+TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)
+
+Functional: Home functionality (Assume typical unless deductions are warranted)
+
+       TypTypical Functionality
+       Min1Minor Deductions 1
+       Min2Minor Deductions 2
+       ModModerate Deductions
+       Maj1Major Deductions 1
+       Maj2Major Deductions 2
+       SevSeverely Damaged
+       SalSalvage only
+
+Fireplaces: Number of fireplaces
+
+FireplaceQu: Fireplace quality
+
+       ExExcellent - Exceptional Masonry Fireplace
+       GdGood - Masonry Fireplace in main level
+       TAAverage - Prefabricated Fireplace in main living area or Masonry Fireplace in basement
+       FaFair - Prefabricated Fireplace in basement
+       PoPoor - Ben Franklin Stove
+       NANo Fireplace
+
+GarageType: Garage location
+
+       2TypesMore than one type of garage
+       AttchdAttached to home
+       BasmentBasement Garage
+       BuiltInBuilt-In (Garage part of house - typically has room above garage)
+       CarPortCar Port
+       DetchdDetached from home
+       NANo Garage
+
+GarageYrBlt: Year garage was built
+
+GarageFinish: Interior finish of the garage
+
+       FinFinished
+       RFnRough Finished
+       UnfUnfinished
+       NANo Garage
+
+GarageCars: Size of garage in car capacity
+
+GarageArea: Size of garage in square feet
+
+GarageQual: Garage quality
+
+       ExExcellent
+       GdGood
+       TATypical/Average
+       FaFair
+       PoPoor
+       NANo Garage
+
+GarageCond: Garage condition
+
+       ExExcellent
+       GdGood
+       TATypical/Average
+       FaFair
+       PoPoor
+       NANo Garage
+
+PavedDrive: Paved driveway
+
+       YPaved 
+       PPartial Pavement
+       NDirt/Gravel
+
+WoodDeckSF: Wood deck area in square feet
+
+OpenPorchSF: Open porch area in square feet
+
+EnclosedPorch: Enclosed porch area in square feet
+
+3SsnPorch: Three season porch area in square feet
+
+ScreenPorch: Screen porch area in square feet
+
+PoolArea: Pool area in square feet
+
+PoolQC: Pool quality
+
+       ExExcellent
+       GdGood
+       TAAverage/Typical
+       FaFair
+       NANo Pool
+
+Fence: Fence quality
+
+       GdPrvGood Privacy
+       MnPrvMinimum Privacy
+       GdWoGood Wood
+       MnWwMinimum Wood/Wire
+       NANo Fence
+
+MiscFeature: Miscellaneous feature not covered in other categories
+
+       ElevElevator
+       Gar22nd Garage (if not described in garage section)
+       OthrOther
+       ShedShed (over 100 SF)
+       TenCTennis Court
+       NANone
+
+MiscVal: $Value of miscellaneous feature
+
+MoSold: Month Sold (MM)
+
+YrSold: Year Sold (YYYY)
+
+SaleType: Type of sale
+
+       WD Warranty Deed - Conventional
+       CWDWarranty Deed - Cash
+       VWDWarranty Deed - VA Loan
+       NewHome just constructed and sold
+       CODCourt Officer Deed/Estate
+       ConContract 15% Down payment regular terms
+       ConLwContract Low Down payment and low interest
+       ConLIContract Low Interest
+       ConLDContract Low Down
+       OthOther
+
+SaleCondition: Condition of sale
+
+       NormalNormal Sale
+       AbnormlAbnormal Sale -  trade, foreclosure, short sale
+       AdjLandAdjoining Land Purchase
+       AllocaAllocation - two linked properties with separate deeds, typically condo with a garage unit
+       FamilySale between family members
+       PartialHome was not completed when last assessed (associated with New Homes)
