@@ -1,15 +1,35 @@
-filename = "train.csv"
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import scipy.stats as stats
+import warnings
+warnings.filterwarnings('ignore')
 
-houses = []
-with open(filename) as infile:
-    lines = infile.readlines()
-    headers = lines[0].strip("\n").split(",")
+from scipy.stats import skew,norm
+from scipy.stats.stats import pearsonr
 
-    for j in range(1, len(lines)):
-        dict = {}
-        values = lines[j].strip("\n").split(",")
-        for i in range(len(values)):
-            dict[headers[i]] = values[i]
-        houses.append(dict)
+train = pd.read_csv("./train.csv")
 
-indata = {"houses" : houses}
+train_ID = train['Id']
+
+#Drop 'Id' column since it's unnecessary for predictions
+train.drop("Id", axis=1, inplace=True)
+
+# Training set
+ncols = train.shape[1] # Number of columns
+nrows = train.shape[0] # Number of rows
+
+#descriptive statistics summary
+train['SalePrice'].describe()
+
+# Kernel Density Plot
+sns.distplot(train.SalePrice,fit=norm)
+plt.ylabel('Frequency')
+plt.title('SalePrice distribution')
+# Get the fitted parameters used by the function
+(mu, sigma) = norm.fit(train['SalePrice'])
+# QQ-plot
+fig = plt.figure()
+res = stats.probplot(train['SalePrice'], plot=plt)
+plt.show()
