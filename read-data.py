@@ -33,3 +33,17 @@ plt.title('SalePrice distribution')
 fig = plt.figure()
 res = stats.probplot(train['SalePrice'], plot=plt)
 plt.show()
+
+plt.hist(train.LotArea, range=[0, 30000])
+plt.show()
+
+plt.hist(train.SalePrice)
+plt.show()
+
+print(sns.distplot((train.LotArea[train.LotArea<30000])))
+print(sns.distplot((train.SalePrice)))
+
+plt.hist(train.YrSold)
+plt.show()
+
+sns.boxplot(train.YrSold,train.LotArea[train.LotArea<20000])
