@@ -85,7 +85,6 @@ all_data['Exterior2nd'] = all_data['Exterior2nd'].fillna(all_data['Exterior2nd']
 #SaleType
 all_data['SaleType'] = all_data['SaleType'].fillna(all_data['SaleType'].mode()[0])
 
-#  Dropping as same value 'AllPub' for all records except 2 NA and 1 'NoSeWa'
 all_data = all_data.drop(['Utilities'], axis=1)
 
 
@@ -113,9 +112,7 @@ for c in cols:
 
 all_data['TotalSF'] = all_data['TotalBsmtSF'] + all_data['1stFlrSF'] + all_data['2ndFlrSF']
 
-#log transform skewed numeric features:
 numeric_feats = all_data.dtypes[all_data.dtypes != "object"].index
-
 skewed_feats = all_data[numeric_feats].apply(lambda x: skew(x.dropna())).sort_values(ascending=False)
 print("\nSkew in numerical features: \n")
 skewness = pd.DataFrame({'Skew': skewed_feats})
@@ -146,9 +143,15 @@ def rmsle_cv(model):
     rmse= np.sqrt(-cross_val_score(model, train.values, y_train, scoring="neg_mean_squared_error", cv=kf))
     return(rmse)
 
+#
+# all_data = all_data.drop(['FireplaceQu'], axis=1)
+# all_data = all_data.drop(['Fireplaces'], axis=1)
 
-all_data = all_data.drop(['FireplaceQu'], axis=1)
-all_data = all_data.drop(['Fireplaces'], axis=1)
+#all_data = all_data.drop(['KitchenAbvGr'], axis=1)
+# all_data = all_data.drop(['Fireplaces'], axis=1)
+
+all_data["PorchSF"] = all_data["OpenPorchSF"] + all_data["EnclosedPorch"] + all_data["3SsnPorch"] + all_data["ScreenPorch"]
+
 all_data['BsmtFinSF'] = all_data['BsmtFinSF1'] + all_data['BsmtFinSF1']
 all_data = all_data.drop(['BsmtFinSF1'], axis=1)
 all_data = all_data.drop(['BsmtFinSF2'], axis=1)
@@ -255,16 +258,17 @@ lgb_train_pred = model_lgb.predict(train)
 lgb_pred = np.expm1(model_lgb.predict(test.values))
 print(rmsle(y_train, lgb_train_pred))
 
+
+weights = [0.7, 0.15, 0.15]
 print('RMSLE score on train data:')
-print(rmsle(y_train,stacked_train_pred*0.7 +
-               xgb_train_pred*0.15 + lgb_train_pred*0.15 ))
+print(rmsle(y_train,stacked_train_pred*weights[0] +
+               xgb_train_pred*weights[1] + lgb_train_pred*weights[2]))
 
 # Ensembled Predictions:
-
-ensemble = stacked_pred*0.70 + xgb_pred*0.15 + lgb_pred*0.15
+ensemble = stacked_pred*weights[0] + xgb_pred*weights[1] + lgb_pred*weights[2]
 #ensemble = stacked_pred*0.60 + xgb_pred*0.2 + lgb_pred*0.2
 
 sub = pd.DataFrame()
 sub['Id'] = test_ID
 sub['SalePrice'] = ensemble
-sub.to_csv('submission.csv',index=False)
+sub.to_csv('submission.csv', index=False)
