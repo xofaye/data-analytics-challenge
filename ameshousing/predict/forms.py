@@ -2,9 +2,9 @@ from django import forms
 
 
 class PredictPriceForm(forms.Form):
-    ms_subclass = forms.CharField(initial="", required=True)
+    ms_subclass = forms.ChoiceField(choices=[(x, x) for x in [20,30,40,50,60,70,80,120,150,160,180]])
     lot_area = forms.IntegerField(required=True)
-    overall_qual = forms.IntegerField(required=True)
+    overall_qual = forms.ChoiceField(choices=[(x, x) for x in range(1, 11)])
     year_built = forms.ChoiceField(choices=[(x, x) for x in range(1980, 2010)])
 
 
