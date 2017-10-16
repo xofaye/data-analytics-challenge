@@ -159,6 +159,10 @@ all_data = all_data.drop(['BsmtFinSF2'], axis=1)
 train = pd.DataFrame(all_data[:ntrain])
 test = pd.DataFrame(all_data[ntrain:])
 
+print(test.values[0].shape)
+print(all_data.columns.values)
+
+"""
 
 lasso = make_pipeline(RobustScaler(), Lasso(alpha=0.0005, random_state=1))
 KRR = KernelRidge(alpha=0.6, kernel='polynomial', degree=2, coef0=2.5)
@@ -272,3 +276,4 @@ sub = pd.DataFrame()
 sub['Id'] = test_ID
 sub['SalePrice'] = ensemble
 sub.to_csv('submission.csv', index=False)
+"""
