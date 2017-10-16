@@ -200,29 +200,27 @@ print("LGBM score: {:.4f} ({:.4f})\n" .format(score.mean(), score.std()))
 
 
 #Average Based models class
+
+
+
 class AveragingModels(BaseEstimator, RegressorMixin, TransformerMixin):
     def __init__(self, models):
         self.models = models
 
-    # we define clones of the original models to fit the data in
-    def fit(self, X, y):
-        self.models_ = [clone(x) for x in self.models]
-
-        # Train cloned base models
+    def fit(self, x, y):
+        self.models_ = [clone(z) for z in self.models]
         for model in self.models_:
-            model.fit(X, y)
-
+            model.fit(x, y)
         return self
 
-    #Now we do the predictions for cloned models and average them
-    def predict(self, X):
+    def predict(self, x):
         predictions = np.column_stack([
-            model.predict(X) for model in self.models_
-        ])
-        #return np.mean(predictions, axis=1)
+            model.predict(x) for model in self.models_])
         #return np.average(predictions, axis=1, weights=[3./10, 2./10, 2./10, 3./10])
-        return np.average(predictions, axis=1, weights=[1./5, 1./5, 1./5, 2./5])
+        return np.average(predictions, axis=1, weights=[2./6, 1./6, 1./6, 2./6])
 
+
+        #return np.mean(predictions, axis=1)
 
 # Averaged base models score
 
