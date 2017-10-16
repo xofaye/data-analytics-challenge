@@ -33,6 +33,7 @@ train["SalePrice"] = np.log1p(train["SalePrice"])
 
 # Drop outliers
 train = train.drop(train[(train['GrLivArea'] > 4000) & (train['SalePrice'] < 300000)].index)
+train = train.drop(train['TotalBsmtSF'] > 6000)
 
 all_data = pd.concat((train.loc[:, 'MSSubClass':'SaleCondition'],
                       test.loc[:, 'MSSubClass':'SaleCondition']))
@@ -85,8 +86,6 @@ all_data['Exterior2nd'] = all_data['Exterior2nd'].fillna(all_data['Exterior2nd']
 #SaleType
 all_data['SaleType'] = all_data['SaleType'].fillna(all_data['SaleType'].mode()[0])
 
-all_data = all_data.drop(['Utilities'], axis=1)
-
 
 # Transforming required numerical features to categorical
 all_data['MSSubClass'] = all_data['MSSubClass'].apply(str)
@@ -109,8 +108,6 @@ for c in cols:
     lbl = LabelEncoder()
     lbl.fit(list(all_data[c].values))
     all_data[c] = lbl.transform(list(all_data[c].values))
-
-all_data['TotalSF'] = all_data['TotalBsmtSF'] + all_data['1stFlrSF'] + all_data['2ndFlrSF']
 
 numeric_feats = all_data.dtypes[all_data.dtypes != "object"].index
 skewed_feats = all_data[numeric_feats].apply(lambda x: skew(x.dropna())).sort_values(ascending=False)
@@ -151,18 +148,17 @@ def rmsle_cv(model):
 # all_data = all_data.drop(['Fireplaces'], axis=1)
 
 all_data["PorchSF"] = all_data["OpenPorchSF"] + all_data["EnclosedPorch"] + all_data["3SsnPorch"] + all_data["ScreenPorch"]
-
+all_data['TotalSF'] = all_data['TotalBsmtSF'] + all_data['1stFlrSF'] + all_data['2ndFlrSF']
 all_data['BsmtFinSF'] = all_data['BsmtFinSF1'] + all_data['BsmtFinSF1']
+#all_data = all_data.drop(['Utilities'], axis=1)
 all_data = all_data.drop(['BsmtFinSF1'], axis=1)
 all_data = all_data.drop(['BsmtFinSF2'], axis=1)
+all_data = all_data.drop(['GarageCars'], axis=1)
 
 train = pd.DataFrame(all_data[:ntrain])
 test = pd.DataFrame(all_data[ntrain:])
 
-print(test.values[0].shape)
-print(all_data.columns.values)
 
-"""
 
 lasso = make_pipeline(RobustScaler(), Lasso(alpha=0.0005, random_state=1))
 KRR = KernelRidge(alpha=0.6, kernel='polynomial', degree=2, coef0=2.5)
@@ -223,9 +219,9 @@ class AveragingModels(BaseEstimator, RegressorMixin, TransformerMixin):
         predictions = np.column_stack([
             model.predict(X) for model in self.models_
         ])
-        return np.mean(predictions, axis=1)
+        #return np.mean(predictions, axis=1)
         #return np.average(predictions, axis=1, weights=[3./10, 2./10, 2./10, 3./10])
-        #return np.average(predictions, axis=1, weights=[2./6, 1./6, 1./6, 2./6])
+        return np.average(predictions, axis=1, weights=[1./5, 1./5, 1./5, 2./5])
 
 
 # Averaged base models score
@@ -276,4 +272,3 @@ sub = pd.DataFrame()
 sub['Id'] = test_ID
 sub['SalePrice'] = ensemble
 sub.to_csv('submission.csv', index=False)
-"""
