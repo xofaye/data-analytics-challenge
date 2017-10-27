@@ -38,6 +38,7 @@ train = train.drop(train['TotalBsmtSF'] > 6000)
 # Combine test + train data for manipulation
 all_data = pd.concat((train.loc[:, 'MSSubClass':'SaleCondition'],
                       test.loc[:, 'MSSubClass':'SaleCondition']))
+all_data = all_data.drop(['Utilities'], axis=1)
 
 
 # Find what data is missing
@@ -113,7 +114,7 @@ def rmsle_cv(model):
 all_data["PorchSF"] = all_data["OpenPorchSF"] + all_data["EnclosedPorch"] + all_data["3SsnPorch"] + all_data["ScreenPorch"]
 all_data['TotalSF'] = all_data['TotalBsmtSF'] + all_data['1stFlrSF'] + all_data['2ndFlrSF']
 all_data['BsmtFinSF'] = all_data['BsmtFinSF1'] + all_data['BsmtFinSF1']
-all_data = all_data.drop(['Utilities'], axis=1)
+#all_data = all_data.drop(['Utilities'], axis=1)
 all_data = all_data.drop(['BsmtFinSF1'], axis=1)
 all_data = all_data.drop(['BsmtFinSF2'], axis=1)
 all_data = all_data.drop(['GarageCars'], axis=1)
@@ -127,11 +128,6 @@ lasso = make_pipeline(RobustScaler(), Lasso(alpha=0.0005, random_state=1))
 KRR = KernelRidge(alpha=0.6, kernel='polynomial', degree=2, coef0=2.5)
 # ElasticNet
 ENet = make_pipeline(RobustScaler(), ElasticNet(alpha=0.0005, l1_ratio=.9, random_state=3))
-# Gradient Boost
-GBoost = GradientBoostingRegressor(n_estimators=3000, learning_rate=0.05,
-                                   max_depth=4, max_features='sqrt',
-                                   min_samples_leaf=15, min_samples_split=10,
-                                   loss='huber', random_state=5)
 model_xgb = xgb.XGBRegressor(colsample_bytree=0.4603, gamma=0.0468,
                              learning_rate=0.05, max_depth=3,
                              min_child_weight=1.7817, n_estimators=2200,
@@ -150,9 +146,6 @@ print("\nLasso score: {:.4f}, STD: {:.4f}\n".format(score.mean(), score.std()))
 score = rmsle_cv(KRR)
 print("Kernel Ridge score: {:.4f}, STD: {:.4f}\n".format(score.mean(), score.std()))
 score = rmsle_cv(ENet)
-print("ElasticNet score: {:.4f}, STD: {:.4f}\n".format(score.mean(), score.std()))
-score = rmsle_cv(GBoost)
-print("Gradient Boosting score: {:.4f}, STD: {:.4f}\n".format(score.mean(), score.std()))
 score = rmsle_cv(model_xgb)
 print("Xgboost score: {:.4f}, STD: {:.4f}\n".format(score.mean(), score.std()))
 score = rmsle_cv(model_lgb)
@@ -176,11 +169,12 @@ class AveragingModels(BaseEstimator, RegressorMixin, TransformerMixin):
             model.predict(x) for model in self.models_])
         #return np.average(predictions, axis=1, weights=[3./10, 2./10, 2./10, 3./10])
         # lol just tried different weights based on error score from above  ¯\_(ツ)_/¯
-        return np.average(predictions, axis=1, weights=[2./6, 1./6, 1./6, 2./6])
-        #return np.mean(predictions, axis=1)
+        #return np.average(predictions, axis=1, weights=[2./6, 1./6, 1./6, 2./6])
+        return np.mean(predictions, axis=1)
 
 # Averaged base models score
-averaged_models = AveragingModels(models = (ENet, GBoost, KRR, lasso))
+#averaged_models = AveragingModels(models = (ENet, GBoost, KRR, lasso))
+averaged_models = AveragingModels(models=(ENet, KRR, lasso))
 
 score = rmsle_cv(averaged_models)
 print(" Averaged base models score: {:.4f}, STD: {:.4f}\n".format(score.mean(), score.std()))
